@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+</head>
+<body>
+<title>Aula del Repaso · Módulo 3</title>
+<meta name="description" content="Portal de estudio del Área 3 del temario CNBV PLD/FT, agosto 2026: una herramienta por tema y la biblioteca de fuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: banda carbón de marca arriba, columna única sobre crema; entradas numeradas por subárea; biblioteca de fuentes en renglones; pie carbón.
+   360Educa no tiene tema oscuro: la página se queda en crema en cualquier tema del visor. */
+:root{
+  --crema:#faf5ec; --blanco:#ffffff; --negro:#1b1b1e; --carbon:#393e41;
+  --gris:#747975; --rule:#dfdede; --verde:#64c27b; --verde-claro:#87d895;
+  --tinte:rgba(100,194,123,.14); --apagado:#efeae0;
+  --display:Montserrat, Arial, sans-serif; --sans:Inter, Arial, sans-serif;
+  --r-sm:6px; --r-md:12px; --r-lg:20px; --pill:999px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--crema);color:var(--negro);font-family:var(--sans);font-size:16px;line-height:1.6;margin:0}
+a{color:var(--negro)}
+a:focus-visible{outline:3px solid var(--carbon);outline-offset:3px;border-radius:var(--r-md)}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px}
+
+/* Encabezado */
+.top{background:var(--carbon);color:var(--blanco);padding-block:28px 40px}
+.marcas{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.marcas span+span::before{content:"·";margin-right:14px;color:var(--verde-claro)}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:40px 0 10px;color:#d9dbdc}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,52px);line-height:1.08;margin:0;text-wrap:balance}
+h1 em{font-style:normal;display:inline-block;background:var(--verde);color:var(--negro);padding:0 .22em;border-radius:var(--r-sm)}
+.lede{max-width:60ch;margin:16px 0 0;color:#eceeef;font-size:17px}
+.acceso{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:6px 14px;border:1px solid rgba(255,255,255,.35);border-radius:var(--pill);font-size:13px;color:#eceeef}
+.acceso svg{flex:none}
+.membrete{height:6px;background:var(--verde-claro)}
+
+/* Secciones */
+main{padding-block:48px 64px;display:grid;gap:64px}
+.sec-head{display:grid;gap:6px;margin-bottom:24px}
+h2{font-family:var(--display);font-weight:800;font-size:28px;line-height:1.2;margin:0;text-wrap:balance}
+.sec-head p{margin:0;max-width:62ch;color:var(--carbon)}
+
+.grupo{display:grid;gap:12px}
+.grupo+.grupo{margin-top:32px}
+.grupo h3{display:flex;align-items:baseline;gap:10px;margin:0 0 4px;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--carbon)}
+.grupo h3 b{font-weight:800;background:var(--verde);color:var(--negro);padding:2px 9px;border-radius:var(--pill);letter-spacing:.04em}
+
+/* Entradas */
+.entrada{display:grid;grid-template-columns:112px 1fr;background:var(--blanco);border:1px solid var(--rule);border-radius:var(--r-md);overflow:hidden;text-decoration:none;color:var(--negro);transition:border-color .15s, transform .15s}
+a.entrada:hover{border-color:var(--carbon);transform:translateY(-1px)}
+.num{background:var(--verde);display:flex;align-items:flex-start;justify-content:center;padding:20px 8px;font-family:var(--display);font-weight:800;font-size:26px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.cuerpo{padding:18px 20px;display:grid;gap:4px;min-width:0}
+.cuerpo h4{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.25;margin:0;text-wrap:balance}
+.fuente{font-size:13px;color:var(--carbon);font-weight:500}
+.que{font-size:15px;margin:2px 0 0}
+.abrir{margin-top:8px;font-size:14px;font-weight:600;display:inline-flex;gap:6px;align-items:center;text-decoration:underline;text-underline-offset:3px}
+.entrada.pronto{background:transparent;border-style:dashed}
+.entrada.pronto .num{background:var(--apagado);color:var(--carbon)}
+.chip{justify-self:start;margin-top:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:var(--pill);border:1px solid var(--carbon);color:var(--carbon)}
+
+/* Biblioteca */
+.guia{background:var(--blanco);border:1px solid var(--rule);border-radius:var(--r-md);padding:18px 20px;display:grid;gap:10px;font-size:15px}
+.guia p{margin:0}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:13px;color:var(--carbon)}
+.leyenda span{display:inline-flex;gap:8px;align-items:center}
+.lista{margin-top:20px;border-top:1px solid var(--rule)}
+.doc{display:grid;grid-template-columns:96px 1fr;gap:16px;padding-block:18px;border-bottom:1px solid var(--rule)}
+.tag{justify-self:start;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.04em;padding:5px 10px;border-radius:var(--r-sm);background:var(--verde);color:var(--negro);white-space:nowrap}
+.tag.guia-tag{background:var(--blanco);border:1.5px solid var(--carbon)}
+.doc-body{min-width:0;display:grid;gap:4px}
+.doc-body h4{margin:0;font-family:var(--display);font-weight:700;font-size:17px;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--carbon);font-variant-numeric:tabular-nums}
+.nonorma{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:11px;border:1px solid var(--carbon);border-radius:var(--pill);padding:1px 8px}
+.doc-body p{margin:0;font-size:15px}
+.doc-body .ext{font-size:14px;font-weight:600;text-underline-offset:3px;justify-self:start;margin-top:2px}
+.pend{font-size:13px;color:var(--carbon);font-style:italic}
+
+/* Pie */
+footer{background:var(--carbon);color:#eceeef;padding-block:32px;font-size:13px}
+footer .wrap{display:grid;gap:10px}
+.firma{font-family:var(--display);font-weight:800;font-size:18px;color:var(--blanco);letter-spacing:.02em}
+.firma small{font-family:var(--sans);font-weight:500;font-size:13px;color:#d9dbdc;letter-spacing:0;margin-left:6px}
+footer p{margin:0;max-width:70ch}
+
+@media (max-width:560px){
+  .entrada{grid-template-columns:1fr}
+  .num{justify-content:flex-start;padding:14px 20px 12px;font-size:24px}
+  .doc{grid-template-columns:1fr;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="marcas" aria-label="Marcas"><span>GMC360</span><span>360EDUCA</span></div>
+    <p class="eyebrow">Certificación CNBV PLD/FT · 2ª convocatoria 2026</p>
+    <h1>Aula del Repaso · <em>Módulo 3</em></h1>
+    <p class="lede">Auditoría, supervisión y enfoque basado en riesgos. Aquí tienes una herramienta de estudio por cada tema del Área 3 del temario de agosto de 2026, y la biblioteca con las fuentes que lo sostienen.</p>
+    <p class="acceso"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Material exclusivo para alumnos inscritos</p>
+  </div>
+</header>
+<div class="membrete" aria-hidden="true"></div>
+
+<main class="wrap">
+  <section aria-labelledby="t-temas">
+    <div class="sec-head">
+      <h2 id="t-temas">Los 8 temas del Área 3</h2>
+      <p>Cada tema abre su app: mapa para ver el todo, Modo recitar para memorizar y simulador con reactivos de opción múltiple. Recórrelos en orden: primero quién revisa, luego el estándar internacional y al final cómo se aterriza en México.</p>
+    </div>
+    <div id="entradas"></div>
+  </section>
+
+  <section aria-labelledby="t-bib">
+    <div class="sec-head">
+      <h2 id="t-bib">Biblioteca</h2>
+    </div>
+    <div class="guia">
+      <p>Son las 10 fuentes que el temario de agosto de 2026 enlista para el Área 3. Úsala para ir al texto oficial cuando una respuesta del simulador te deje duda, y para saber de qué documento sale cada tema.</p>
+      <p>Cómo leerla: la etiqueta de la izquierda es la abreviatura con la que la citamos en clase y en las apps. La fecha es la de publicación o de la última reforma que marca el temario.</p>
+      <div class="leyenda">
+        <span><b class="tag">ABC</b> Norma: obliga</span>
+        <span><b class="tag guia-tag">ABC</b> Guía o diagnóstico: orienta, no obliga</span>
+      </div>
+    </div>
+    <div class="lista" id="biblioteca"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="firma">360EDUCA<small>by GMC360</small></div>
+    <p>Material de estudio para la certificación de la CNBV en PLD/FT. No sustituye la consulta de los textos oficiales publicados en el DOF y por cada emisor.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== CONFIGURACIÓN DE LIGAS =====
+   Herramientas: carpetas internas del sitio. Una liga vacía ("") muestra la entrada como «Próximamente».
+   Biblioteca: ligas públicas oficiales del temario de agosto 2026. */
+const LIGAS = {
+  "herramientas": {
+    "3.1.1": "3-1-1-auditoria/",
+    "3.1.2": "3-1-2-supervision/",
+    "3.2.1": "3-2-1-gafi/",
+    "3.2.2": "3-2-2-basilea/",
+    "3.3.1": "3-3-1-metodologia/",
+    "3.3.2": "3-3-2-grado-riesgo/",
+    "3.3.3": "3-3-3-enr/",
+    "3.3.4": "3-3-4-anticorrupcion/"
+  },
+  "biblioteca": {
+    "LCNBV": "https://www.cnbv.gob.mx/Normatividad/Ley%20de%20la%20Comisi%C3%B3n%20Nacional%20Bancaria%20y%20de%20Valores.pdf",
+    "RS": "https://www.cnbv.gob.mx/Normatividad/Reglamento%20de%20Supervisi%C3%B3n%20de%20la%20Comisi%C3%B3n%20Nacional%20Bancaria%20y%20de%20Valores.pdf",
+    "LIA": "https://dof.gob.mx/nota_detalle.php?codigo=5632969&fecha=18/10/2021",
+    "DCG 115": "https://www.gob.mx/cms/uploads/attachment/file/978360/DCG_Bancos_compilado_28.08.2024.pdf",
+    "DCG 124": "https://www.gob.mx/cms/uploads/attachment/file/978376/DCG_SOFIPOS_compilado_2021.pdf",
+    "GAFI": "https://www.cnbv.gob.mx/PrevencionDeLavadoDeDinero/Documents/GAFI_Risk-Based-Approach-Banking-Sector_%282014%29%20-ESP%20REV%20mayo8.v.pdf",
+    "BCBS": "https://www.bis.org/publ/bcbs275_es.pdf",
+    "ENR": "https://www.pld.hacienda.gob.mx/work/models/PLD/documentos/enr2023.pdf",
+    "GM": "https://www.gob.mx/cms/uploads/attachment/file/491487/Guia_para_la_Metodologia_de_Evaluacion_2019.pdf",
+    "GA": "https://www.cnbv.gob.mx/PrevencionDeLavadoDeDinero/Documents/Guia_Anticorrupcion_2020.pdf"
+  }
+};
+/* ===== FIN DE CONFIGURACIÓN ===== */
+
+const GRUPOS = [
+  {clave:"3.1", nombre:"Auditoría y supervisión", temas:[
+    {n:"3.1.1", t:"Informe de auditoría PLD/FT", f:"Lineamientos del Informe de Auditoría · CNBV, DOF 18-oct-2021", q:"Los 12 lineamientos en 4 apartados y las 14 fracciones del OCTAVO que más se preguntan."},
+    {n:"3.1.2", t:"Supervisión CNBV", f:"Reglamento de Supervisión de la CNBV · DOF 18-ene-2005, reformas 2012 y 2021", q:"Sus 10 títulos, los tres tipos de visita, la visita paso a paso y qué pasa si encuentran algo."}
+  ]},
+  {clave:"3.2", nombre:"EBR internacional", temas:[
+    {n:"3.2.1", t:"Guía para un EBR del sector bancario", f:"GAFI · octubre 2014", q:"Qué es el EBR, cómo supervisa la autoridad con ese enfoque y qué hace el banco por dentro."},
+    {n:"3.2.2", t:"Adecuada gestión de los riesgos de BC/FT", f:"Comité de Basilea, BCBS 275 · enero 2014", q:"Cuatro partes y tres anexos; el corazón son los seis elementos esenciales de la Parte II."}
+  ]},
+  {clave:"3.3", nombre:"EBR nacional", temas:[
+    {n:"3.3.1", t:"Metodología de evaluación de riesgos", f:"Guía CNBV 2019 · DCG art. 115 LIC, Capítulo II Bis", q:"El riesgo de la entidad: tres fases y, dentro del diseño, identificar, medir y mitigar."},
+    {n:"3.3.2", t:"Clasificación por grado de riesgo", f:"DCG art. 115 LIC, Capítulo III y Anexo 3", q:"El riesgo de cada cliente: el Modelo de Riesgos, quién es de alto riesgo, PEP y plazos."},
+    {n:"3.3.3", t:"Evaluación Nacional de Riesgos", f:"ENR de LD y FT 2023", q:"Amenazas, vulnerabilidades y niveles de riesgo del país."},
+    {n:"3.3.4", t:"Riesgos de corrupción", f:"Guía Anticorrupción CNBV 2020 · Apartado III", q:"Factores de riesgo de operaciones inusuales vinculadas con PEP nacionales y personas vulnerables."}
+  ]}
+];
+
+const FUENTES = [
+  {e:"LCNBV", nombre:"Ley de la Comisión Nacional Bancaria y de Valores", fecha:"DOF 28-abr-1995 · última reforma 11-may-2022", norma:true,
+   uso:"Fundamento de la Comisión y de sus facultades de supervisión. Respalda el tema 3.1.2; no tiene app propia."},
+  {e:"RS", nombre:"Reglamento de Supervisión de la CNBV", fecha:"DOF 18-ene-2005 · última reforma 21-jul-2021", norma:true,
+   uso:"Cómo inspecciona, vigila y corrige la CNBV, y cómo corre una visita. Se estudia en 3.1.2."},
+  {e:"LIA", nombre:"Lineamientos para la elaboración del Informe de Auditoría PLD/FT", fecha:"DOF 18-oct-2021", norma:true,
+   uso:"Requisitos del auditor y contenido del Informe que se entrega a la CNBV. Se estudia en 3.1.1."},
+  {e:"DCG 115", nombre:"DCG del art. 115 LIC (bancos) · Capítulo II Bis, Enfoque Basado en Riesgos", fecha:"Última reforma 28-ago-2024", norma:true,
+   uso:"La obligación de cada banco de evaluar sus propios riesgos. Es la parte obligatoria de 3.3.1."},
+  {e:"DCG 124", nombre:"DCG del art. 124 LACP (SOFIPO)", fecha:"Última reforma 9-sep-2021", norma:true,
+   uso:"Disposiciones PLD/FT de las sociedades financieras populares que el temario incluye en el Área 3. No tiene app propia."},
+  {e:"GAFI", nombre:"Guía para un Enfoque Basado en Riesgo · Sector bancario", fecha:"GAFI · octubre 2014", norma:false,
+   uso:"Qué es el EBR y cómo lo aplican supervisor y banco. Se estudia en 3.2.1. No es norma: la propia guía dice que no es vinculante (párr. 8)."},
+  {e:"BCBS", nombre:"BCBS 275 · Adecuada gestión de los riesgos relacionados con el blanqueo de capitales y la FT", fecha:"Comité de Basilea · enero 2014", norma:false,
+   uso:"Los elementos esenciales de gestión del riesgo BC/FT en un banco. Se estudia en 3.2.2. No es norma mexicana."},
+  {e:"ENR", nombre:"Evaluación Nacional de Riesgos de LD y FT 2023", fecha:"Noviembre 2023", norma:false,
+   uso:"El diagnóstico del país: amenazas, vulnerabilidades y niveles de riesgo. Se estudia en 3.3.3. No es norma: es un diagnóstico de la autoridad."},
+  {e:"GM", nombre:"Guía para la elaboración de una metodología de evaluación de riesgos en PLD/FT", fecha:"CNBV · 6-sep-2019", norma:false,
+   uso:"Cómo armar paso a paso la metodología de la entidad. Se estudia en 3.3.1. No es norma: lo obligatorio está en las DCG."},
+  {e:"GA", nombre:"Guía Anticorrupción CNBV · Apartado III", fecha:"2020", norma:false,
+   uso:"Factores de riesgo con PEP nacionales y personas vulnerables. Se estudia en 3.3.4. No es norma: la guía no es vinculante."}
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const flecha = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+document.getElementById("entradas").innerHTML = GRUPOS.map(g => `
+  <div class="grupo">
+    <h3><b>${g.clave}</b>${esc(g.nombre)}</h3>
+    ${g.temas.map(x => {
+      const url = LIGAS.herramientas[x.n];
+      const dentro = `<div class="num">${x.n}</div>
+        <div class="cuerpo">
+          <h4>${esc(x.t)}</h4>
+          <span class="fuente">${esc(x.f)}</span>
+          <p class="que">${esc(x.q)}</p>
+          ${url ? `<span class="abrir">Abrir herramienta ${flecha}</span>` : `<span class="chip">Próximamente</span>`}
+        </div>`;
+      return url
+        ? `<a class="entrada" href="${esc(url)}">${dentro}</a>`
+        : `<div class="entrada pronto" aria-disabled="true">${dentro}</div>`;
+    }).join("")}
+  </div>`).join("");
+
+document.getElementById("biblioteca").innerHTML = FUENTES.map(d => {
+  const url = LIGAS.biblioteca[d.e];
+  return `<div class="doc">
+    <b class="tag${d.norma ? "" : " guia-tag"}">${esc(d.e)}</b>
+    <div class="doc-body">
+      <h4>${esc(d.nombre)}</h4>
+      <div class="meta"><span>${esc(d.fecha)}</span>${d.norma ? "" : '<span class="nonorma">No es norma</span>'}</div>
+      <p>${esc(d.uso)}</p>
+      ${url ? `<a class="ext" href="${esc(url)}" target="_blank" rel="noopener">Texto oficial ↗</a>` : `<span class="pend">Liga oficial por confirmar</span>`}
+    </div>
+  </div>`;
+}).join("");
+</script>
+
+</body></html>
